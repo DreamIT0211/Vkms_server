@@ -73,7 +73,7 @@ const galleryMulter = multer({
 // app.use(cors());
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://iridescent-haupia-d40fe9.netlify.app/"],
     credentials: true,
   })
 );

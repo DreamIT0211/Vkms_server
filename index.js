@@ -72,7 +72,7 @@ const galleryMulter = multer({
 
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://iridescent-haupia-d40fe9.netlify.app');
+  res.header('Access-Control-Allow-Origin', 'https://vmtdakor.netlify.app');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
@@ -80,7 +80,7 @@ app.use((req, res, next) => {
 // app.use(cors());
 app.use(
   cors({
-    origin: ["https://iridescent-haupia-d40fe9.netlify.app/"],
+    origin: ["https://vmtdakor.netlify.app/"],
     credentials: true,
   })
 );

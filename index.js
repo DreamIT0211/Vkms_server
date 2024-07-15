@@ -1,4 +1,4 @@
-// app.js
+// index.js
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
@@ -100,6 +100,7 @@ const contactRoutes = require("./routes/contactRoutes");
 const headlineRoutes = require("./routes/headlineRoutes");
 const trusteeRoutes = require("./routes/trusteeRoutes");
 const galleryRoutes = require("./routes/galleryRoutes");
+const siteVisitCountRoutes = require("./routes/siteVisitCountRoutes");
 
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/rooms", roomRoutes);
@@ -112,6 +113,7 @@ app.use("/api/events", eventMulter.single("image"), eventsRoutes);
 app.use("/api/hero-images", heroImageMulter.single("image"), heroImageRoutes);
 app.use("/api/trustees", trusteeMulter.single("image"), trusteeRoutes);
 app.use("/api/gallery", galleryMulter.single("image"), galleryRoutes);
+app.use("/api/site-visits", siteVisitCountRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

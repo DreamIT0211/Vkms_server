@@ -2,13 +2,14 @@
 const { sql, poolPromise } = require("../config/db");
 const fs = require("fs");
 const path = require("path");
+const dbSettings = require('../dbSettings');
 
 const saveImageToServer = (file, folder) => {
   return new Promise((resolve, reject) => {
     if (!file) {
       reject(new Error("No image uploaded"));
     }
-    const imageUrl = `${process.env.DOMAIN_URL}/uploads/trustees/${file.filename}`; // path where the image is saved
+    const imageUrl = `${dbSettings.DOMAIN_URL}/uploads/trustees/${file.filename}`; // path where the image is saved
     resolve(imageUrl);
   });
 };
@@ -100,7 +101,7 @@ class TrusteeController {
 
       // Check if a new image file is uploaded
       if (req.file) {
-        const imageUrl = `${process.env.DOMAIN_URL}/uploads/trustees/${req.file.filename}`; // Obtain the image URL
+        const imageUrl = `${dbSettings.DOMAIN_URL}/uploads/trustees/${req.file.filename}`; // Obtain the image URL
         trustee_image = imageUrl; // Update the trustee_image with the new image URL
       }
 

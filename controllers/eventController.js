@@ -2,13 +2,16 @@
 const { sql, poolPromise } = require("../config/db");
 const fs = require("fs");
 const path = require("path");
+const dbSettings = require('../dbSettings');
+
+console.log(dbSettings.DOMAIN_URL);
 
 const saveImageToServer = (file, folder) => {
   return new Promise((resolve, reject) => {
     if (!file) {
       reject(new Error("No image uploaded"));
     }
-    const imageUrl = `${process.env.DOMAIN_URL}/uploads/${folder}/${file.filename}`; // path where the image is saved
+    const imageUrl = `${dbSettings.DOMAIN_URL}/uploads/${folder}/${file.filename}`; // path where the image is saved
     resolve(imageUrl);
   });
 };
@@ -92,7 +95,7 @@ class EventController {
 
       // Check if a new image file is uploaded
       if (req.file) {
-        const imageUrl = `${process.env.DOMAIN_URL}/uploads/events/${req.file.filename}`; // Obtain the image URL
+        const imageUrl = `${dbSettings.DOMAIN_URL}/uploads/events/${req.file.filename}`; // Obtain the image URL
         event_image = imageUrl; // Update the event_image with the new image URL
       }
 

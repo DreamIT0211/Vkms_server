@@ -5,8 +5,9 @@ const cors = require("cors");
 const multer = require("multer");
 const fs = require("fs");
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3000;
 require("dotenv").config();
+
 
 // Function to create multiple directories if they don't exist
 const createDirectories = (dirs) => {

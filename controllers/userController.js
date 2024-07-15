@@ -1,7 +1,12 @@
 // controllers/userController.js
 const { sql, poolPromise } = require("../config/db");
 require("dotenv").config();
-const saltRounds = parseInt(process.env.SALT_ROUNDS);
+const dbSettings = require('../dbSettings');
+
+console.log(dbSettings.SALT_ROUNDS);
+console.log(dbSettings.SECRET_KEY);
+console.log(dbSettings.RESET_SECRET_KEY);
+const saltRounds = parseInt(dbSettings.SALT_ROUNDSS);
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
@@ -225,7 +230,7 @@ class UserController {
           useremail: user.Email,
           userrole: user.Role,
         },
-        process.env.SECRET_KEY,
+        dbSettings.SECRET_KEY,
         { expiresIn: "1h" }
       );
 
@@ -257,7 +262,7 @@ class UserController {
       // Generate a unique token for password reset
       const resetToken = jwt.sign(
         { userId: user.UserID },
-        process.env.RESET_SECRET_KEY,
+        dbSettings.RESET_SECRET_KEY,
         {
           expiresIn: "1h", // token expires in 1 hour
         }

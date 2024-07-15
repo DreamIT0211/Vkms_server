@@ -2,13 +2,15 @@
 const { sql, poolPromise } = require("../config/db");
 const path = require("path");
 const fs = require("fs");
+const dbSettings = require('../dbSettings');
+
 
 const saveImageToServer = (file, folder) => {
   return new Promise((resolve, reject) => {
     if (!file) {
       reject(new Error("No image uploaded"));
     }
-    const imageUrl = `${process.env.DOMAIN_URL}/uploads/${folder}/${file.filename}`; // path where the image is saved
+    const imageUrl = `${dbSettings.DOMAIN_URL}/uploads/${folder}/${file.filename}`; // path where the image is saved
     resolve(imageUrl);
   });
 };
@@ -79,7 +81,7 @@ class GalleryController {
 
       // Check if a new image file is uploaded
       if (req.file) {
-        const newImageUrl = `${process.env.DOMAIN_URL}/uploads/gallery/${req.file.filename}`; // Obtain the new image URL
+        const newImageUrl = `${dbSettings.DOMAIN_URL}/uploads/gallery/${req.file.filename}`; // Obtain the new image URL
         image_url = newImageUrl; // Update the image_url with the new image URL
       }
 

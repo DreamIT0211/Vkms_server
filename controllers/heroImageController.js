@@ -3,6 +3,8 @@
 const { sql, poolPromise } = require("../config/db");
 const path = require('path');
 const fs = require("fs");
+const dbSettings = require('../dbSettings');
+
 
 // Function to save image to the server and return the URL
 const saveImageToServer = (file, folder) => {
@@ -10,7 +12,7 @@ const saveImageToServer = (file, folder) => {
     if (!file) {
       reject(new Error("No image uploaded"));
     }
-    const imageUrl = `${process.env.DOMAIN_URL}/uploads/${folder}/${file.filename}`; // Path where the image is saved
+    const imageUrl = `${dbSettings.DOMAIN_URL}/uploads/${folder}/${file.filename}`; // Path where the image is saved
     resolve(imageUrl);
   });
 };
